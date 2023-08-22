@@ -7,29 +7,34 @@ let operator = null;
 
 let keyList = document.querySelectorAll(".key");
 
-keyList.forEach(key => key.addEventListener("click", (e) => runCalculator(e)));
+keyList.forEach(key => key.addEventListener("click", (e) => runCalculator(e.target)));
 
-function runCalculator(e) {
-    if (e.target.classList[1] === "number") {
+function runCalculator(element) {
+    console.log(element);
+    console.log(element.dataset.key);
+    if (element.classList[1] === "number") {
 
-        if (e.target.id === "decimal") {
+        if (element.dataset.key === ".") {
             temp += ".";
         } else {
-            temp += e.target.id;
+            temp += element.dataset.key;
         }
+
+        let tempResult = Math.round(result * 100) / 100;
+
+        if (operator !== null)
+            displayTop.textContent = `${tempResult} ${operator}`;
 
         displayBottom.textContent = temp;
 
-    } else if (e.target.classList[1] === "operator") {
+    } else if (element.classList[1] === "operator") {
         if (result === null) {
             result = +temp;
             temp = "";
         }
 
         if (operator === null)
-            operator = e.target.id;
-
-        let symbol = getSymbol(operator);
+            operator = element.dataset.key;
 
         if (temp !== "") {
             let tempResult = Math.round(result * 100) / 100;
@@ -37,50 +42,43 @@ function runCalculator(e) {
             result = operate(result, +temp, operator);
             let dispResult = Math.round(result * 100) / 100;
 
-            if (e.target.id === "equals") {
-                displayTop.textContent = `${tempResult} ${symbol} ${temp} = ${dispResult}`;
+            if (element.dataset.key === "Enter") {
+                displayTop.textContent = `${tempResult} ${operator} ${temp} = ${dispResult}`;
 
                 operator = null;
 
             } else {
-                operator = e.target.id;
+                operator = element.dataset.key;
                 let dispResult = Math.round(result * 100) / 100;
-                displayTop.textContent = `${dispResult} ${symbol}`;
+                displayTop.textContent = `${dispResult} ${operator}`;
             }
-
             temp = "";
         }
-
+    } else if (element.classList[1] === "command") {
+        let command = element.dataset.key;
+        if (command === "Delete") {
+            result = null;
+            temp = "";
+            operator = null;
+            displayTop.textContent = "";
+            displayBottom.textContent = "";
+        } else if (command === "Backspace") {
+            temp = temp.slice(0, -1);
+            displayBottom.textContent = temp;
+        }
     }
 }
 
 function operate(val1, val2, operator) {
     switch (operator) {
-        case "multiply":
-            //          console.log(`${val1} x ${val2}`);
+        case "*":
             return multiply(val1, val2);
-        case "divide":
-            //          console.log(`${val1} / ${val2}`);
+        case "/":
             return divide(val1, val2);
-        case "add":
-            //          console.log(`${val1} + ${val2}`);
+        case "+":
             return add(val1, val2);
-        case "subtract":
-            //          console.log(`${val1} - ${val2}`);
+        case "-":
             return subtract(val1, val2);
-    }
-}
-
-function getSymbol(operator) {
-    switch (operator) {
-        case "multiply":
-            return "×";
-        case "divide":
-            return "÷";
-        case "add":
-            return "+";
-        case "subtract":
-            return "-";
     }
 }
 
@@ -101,3 +99,7 @@ function divide(a, b) {
 }
 
 
+window.addEventListener("keydown", (e) => {
+    const btn = document.querySelector(`.key[data-key="${e.key}"]`);
+    runCalculator(btn);
+});

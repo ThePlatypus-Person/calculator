@@ -4,6 +4,7 @@
     --light-brown: #d4a373;
     --cream: #faedcd;
     --light-cream: #fefae0;
+    --brown: #432818;
 }
 
 html, body, .root {
@@ -41,13 +42,16 @@ html, body, .root {
 
     background-color: var(--light-cream);
     flex: 1 1 auto;
-    height: 100px;
-    color: var(--light-brown);
+    height: 110px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: var(--brown);
     font-weight: bold;
+    padding: 10px;
 }
 
 .display .top {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .display .bottom {
@@ -79,6 +83,7 @@ html, body, .root {
     justify-content: center;
     align-items: center;
 
+    color: var(--brown);
     font-size: 20px;
     font-weight: bold;
 }
@@ -87,7 +92,8 @@ html, body, .root {
     background-color: var(--cream);
 }
 
-#clear, #delete, #equals {
+[data-key="Delete"],
+[data-key="Backspace"],
+[data-key="Enter"] {
     flex: 1 1 auto;
 }
-
