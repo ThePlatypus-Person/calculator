@@ -1,99 +1,118 @@
 :root {
-    --grey: #ccd5ae;
-    --light-grey: #e9edc9;
-    --light-brown: #d4a373;
-    --cream: #faedcd;
-    --light-cream: #fefae0;
-    --brown: #432818;
+    --gray-900: #111827;
+    --gray-800: #1f2937;
+    --gray-700: #374151;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-300: #d1d5db;
+    --gray-200: #e5e7eb;
+    --emerald-500: #10b981;
+    --cyan-500: #06b6d4;
+    --red-500: #ef4444;
+    --green-200: #bbf7d0;
 }
 
-html, body, .root {
-    width: 100%;
-    height: 100%;
+* {
+    box-sizing: border-box;
+    margin: 0;
 }
 
-.root {
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    background-color: var(--light-cream);
+    height: 100vh;
+    font-family: Roboto;
+    background-color: var(--green-200);
 }
 
 .calculator {
-    display: flex;
-    background-color: var(--light-grey);
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: stretch;
-    gap: 20px;
+    background-color: var(--gray-900);
+    width: 400px;
+    padding: 25px;
+    border-radius: 15px;
 
-    border: solid var(--grey) 5px;
-    border-radius: 20px;
-    padding: 20px;
-    box-sizing: border-box;
+    -webkit-box-shadow: 10px 10px 40px -18px rgba(0,0,0,0.68);
+    -moz-box-shadow: 10px 10px 40px -18px rgba(0,0,0,0.68);
+    box-shadow: 10px 10px 40px -18px rgba(0,0,0,0.68);
 }
 
 .display {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    background-color: var(--light-cream);
-    flex: 1 1 auto;
-    height: 110px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    color: var(--brown);
-    font-weight: bold;
-    padding: 10px;
-}
-
-.display .top {
-    font-size: 25px;
-}
-
-.display .bottom {
-    font-size: 50px;
-}
-
-.keys {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--grey);
-    border-radius: 5px;
-    gap: 5px;
-    padding: 10px;
-}
-
-
-.row {
-    display: flex;
-    gap: 5px;
-}
-
-.key {
-    width: 70px;
-    height: 70px;
-    border: solid white 3px;
-    border-radius: 20px;
+    background-color: var(--gray-700);
+    height: 100px;
+    border-radius: 7px;
+    margin-bottom: 20px;
     
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-shadow: inset 10px 10px 9px -8px rgba(0,0,0,0.62);
+    -moz-box-shadow: inset 10px 10px 9px -8px rgba(0,0,0,0.62);
+    box-shadow: inset 10px 10px 9px -8px rgba(0,0,0,0.62);
+}
 
-    color: var(--brown);
-    font-size: 20px;
-    font-weight: bold;
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 75px);
+    gap: 10px;
+    padding-top: 10px;
+
+}
+
+.keyboard button {
+    background-color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+
+    color: var(--gray-200);
+    transition-duration: 300ms;
+
+    font-weight: 600;
+    font-size: 26px;
+    border-style: none;
+
+    -webkit-box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.62);
+    -moz-box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.62);
+    box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.62);
+}
+
+.keyboard button:hover {
+    transform: translateY(-5px);
+}
+
+.keyboard button:active {
+    transform: translateY(0px);
+}
+
+[data-value='clear'], [data-value='delete']  {
+    grid-column-end: span 3;
+}
+
+[data-value='clear']:hover, 
+[data-value='delete']:hover {
+    background-color: var(--red-500);
+    color: var(--gray-900);
+}
+
+.operator, .key {
+    grid-column-end: span 2;
 }
 
 .key:hover {
-    background-color: var(--cream);
+    background-color: var(--gray-400);
+    color: var(--gray-900);
 }
 
-[data-key="Delete"],
-[data-key="Backspace"],
-[data-key="Enter"] {
-    flex: 1 1 auto;
+.operator:hover {
+    background-color: var(--emerald-500);
+    color: var(--gray-900);
+}
+
+[data-value='='] {
+    grid-column-end: span 4;
+}
+
+[data-value='=']:hover {
+    background-color: var(--cyan-500);
+    color: var(--gray-900);
 }

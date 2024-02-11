@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body>
-        <div class="root">
-
-            <div class="calculator">
-
-                <div class="display">
-                    <div class="top"></div>
-                    <div class="bottom"></div>
-                </div>
-
-                <div class="keys">
-                    <div class="row">
-                        <button class="key command" data-key="Delete">Clear</button>
-                        <button class="key command" data-key="Backspace">Delete</button>
-                        <button class="key operator" data-key="*">×</button>
-                    </div>
-
-                    <div class="row">
-                        <button class="key number" data-key="7">7</button>
-                        <button class="key number" data-key="8">8</button>
-                        <button class="key number" data-key="9">9</button>
-                        <button class="key operator" data-key="/">÷</button>
-                    </div>
-
-                    <div class="row">
-                        <button class="key number" data-key="4">4</button>
-                        <button class="key number" data-key="5">5</button>
-                        <button class="key number" data-key="6">6</button>
-                        <button class="key operator" data-key="+">+</button>
-                    </div>
-
-                    <div class="row">
-                        <button class="key number" data-key="1">1</button>
-                        <button class="key number" data-key="2">2</button>
-                        <button class="key number" data-key="3">3</button>
-                        <button class="key operator" data-key="-">-</button>
-                    </div>
-
-                    <div class="row">
-                        <button class="key number" data-key="0">0</button>
-                        <button class="key number" data-key=".">.</button>
-                        <button class="key operator" data-key="Enter">=</button>
-                    </div>
-                </div>
-
-            </div>
-
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
         </div>
-    </body>
+
+        <div class="keyboard">
+            <button data-value="clear">Clear</button>
+            <button data-value="delete">Delete</button>
+
+            <button class="operator" data-value="*">×</button>
+
+            <button class="key" data-value="7">7</button>
+            <button class="key" data-value="8">8</button>
+            <button class="key" data-value="9">9</button>
+
+            <button class="operator" data-value="/">÷</button>
+
+            <button class="key" data-value="4">4</button>
+            <button class="key" data-value="5">5</button>
+            <button class="key" data-value="6">6</button>
+
+            <button class="operator" data-value="+">+</button>
+
+            <button class="key" data-value="1">1</button>
+            <button class="key" data-value="2">2</button>
+            <button class="key" data-value="3">3</button>
+
+            <button class="operator" data-value="-">-</button>
+
+            <button class="key" data-value="0">0</button>
+            <button class="key" data-value=".">.</button>
+
+            <button data-value="=">=</button>
+        </div>
+
+    </div>
+</body>
 </html>
